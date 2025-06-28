@@ -1,0 +1,25 @@
+.qr_code_container {
+    background-color: #f8fafc;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    width: 800px;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+.qr_code{
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 18px;
+    width: 50%;
+}
+
+
+.qr_code_customization {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 18px;
+    width: 50%;
+}
+

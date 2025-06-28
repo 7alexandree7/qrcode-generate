@@ -1,16 +1,17 @@
 import React from 'react'
 import Image from 'next/image'
+import styles from './SectionTitleQrcodeGenerate.module.css'
 
 const SectionTitleQrcodeGenerate = () => {
     return (
-        <section className="title-container">
-            <h1 className="page-title"> Gere e custiomize Qr Codes <span>Dinâmicos</span> </h1>
+        <section className={styles.title_container}>
+            <h1 className={styles.page_title}> Gere e custiomize Qr Codes <span className={styles.title_span}>Dinâmicos</span> </h1>
             <Image
                 src="/arrow.svg"
                 alt="seta ilustrativa para baixo"
-                className="arrow-detail"
-                width={24}
-                height={24}
+                className={styles.arrow_detail}
+                width={100}
+                height={100}
                 priority
             />
         </section>

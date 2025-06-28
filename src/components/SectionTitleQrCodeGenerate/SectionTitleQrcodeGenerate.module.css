@@ -1,0 +1,21 @@
+.title_container {
+    position: relative;
+}
+
+.page_title {
+    font-weight: 600;
+    text-align: center;
+    font-size: 30px;
+}
+
+
+.title_span {
+    color: #4F46E5;
+}
+
+
+.arrow_detail {
+    position: absolute;
+    right: -90px;
+    transform: rotate(-10deg);
+}

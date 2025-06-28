@@ -1,6 +1,6 @@
 'use client'
 
-import Image from "next/image";
+import SectionTitleQrcodeGenerate from "@/components/SectionTitleQrCodeGenerate/SectionTitleQrcodeGenerate";
 import { QRCodeCanvas } from "qrcode.react";
 import { FaUpload } from "react-icons/fa";
 
@@ -8,17 +8,7 @@ export default function Home() {
   return (
     <main className="container">
 
-      <section className="title-container">
-        <h1 className="page-title"> Gere e custiomize Qr Codes <span>Dinâmicos</span> </h1>
-        <Image
-          src="/arrow.svg"
-          alt="seta ilustrativa para baixo"
-          className="arrow-detail"
-          width={24}
-          height={24}
-          priority
-        />
-      </section>
+      <SectionTitleQrcodeGenerate />
 
       <section className="qr-code-container">
         <div className="qr-code">

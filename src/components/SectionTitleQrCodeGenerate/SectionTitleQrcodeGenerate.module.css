@@ -5,7 +5,8 @@
 .page_title {
     font-weight: 600;
     text-align: center;
-    font-size: 30px;
+    font-size: 32px;
+    margin-bottom: 4px;
 }
 
 
@@ -16,6 +17,14 @@
 
 .arrow_detail {
     position: absolute;
-    right: -90px;
+    right: -100px;
     transform: rotate(-10deg);
+    bottom: -70px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .arrow_detail {
+        display: none;
+    }
 }

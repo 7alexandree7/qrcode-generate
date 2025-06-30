@@ -9,7 +9,7 @@ const QrCode = () => {
     return (
         <section className={styles.qr_code_container}>
             <div className={styles.qr_code}>
-                <div className="link-input">
+                <div className={styles.link_input}>
                     <label htmlFor="link">Digite seu Link</label>
                     <input
                         type="text"
@@ -18,12 +18,12 @@ const QrCode = () => {
                         placeholder="https://www.seusite.com.br"
                     />
                 </div>
-                <div className="qr-code-preview">
+                <div className={styles.qr_code_preview}>
                     <p>Qr Code Preview</p>
                     <QRCodeCanvas
                         value={"https://picturesofpeoplescanningqrcodes.tumblr.com/"}
                         title={"Title for my QR Code"}
-                        size={128}
+                        size={200}
                         bgColor={"#ffffff"}
                         fgColor={"#000000"}
                         level={"L"}
@@ -42,47 +42,45 @@ const QrCode = () => {
 
             <div className={styles.qr_code_customization}>
 
-                <div className="ceustomization-containr">
+                <div className={styles.customization_container}>
                     <h3>Cores</h3>
-                    <div className="input-container colors">
-                        <div className="input-box">
-                            <label htmlFor="fgColor">Cor Principal</label>
+                    <div className={styles.input_container_colors}>
+                        <div className={styles.input_box_colors}>
+                            <label className={styles.label_qr} htmlFor="fgColor">Cor Principal</label>
                             <input
                                 type="color"
                                 id="fgColor"
-                                className="input-color"
                             />
                         </div>
-                        <div className="input-box">
-                            <label htmlFor="bgColor">Cor Do Fundo</label>
+                        <div className={styles.input_box_colors}>
+                            <label className={styles.label_qr} htmlFor="bgColor">Cor Do Fundo</label>
                             <input
                                 type="color"
-                                id="bgColor"
-                                className="input-color"
+                                id="bgColor"                             
                             />
                         </div>
                     </div>
                 </div>
 
-                <div className="customization-container">
-                    <h3>Logo</h3>
-                    <div className="input-container">
-                        <div className="input-box">
+                <div className={styles.customization_container}>
+                    <h3 className={styles.subtitle_qr}>Logo</h3>
+                    <div className={styles.input_container}>
+                        <div className={styles.input_box}>
                             <label htmlFor="logo">Insira seu Logo</label>
                             <input
                                 type="file"
                                 id="logo"
-                                className="input-file"
+                                className={styles.input_file}
                                 accept="image/*"
                             />
-                            <button className="input-file-button">
+                            <button className={styles.input_file_button}>
                                 <FaUpload />
                                 Escolher Arquivo
                             </button>
                         </div>
-                        <div className="input-box">
+                        <div className={styles.input_box}>
                             <label htmlFor="logoSize">Tamanho Da Logo</label>
-                            <select name="logoSize" id="logoSize">
+                            <select name="logoSize" id={styles.logoSize}>
                                 <option value="24">Pequeno 24px</option>
                                 <option value="38">Médio 38px</option>
                                 <option value="50">Grande 50px</option>
@@ -91,7 +89,7 @@ const QrCode = () => {
                     </div>
                 </div>
 
-                <button className="download-qr-code">Baixar Qr Code</button>
+                <button className={styles.download_button}>Baixar Qr Code</button>
 
             </div>
         </section>

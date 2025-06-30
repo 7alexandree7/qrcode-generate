@@ -10,8 +10,8 @@ const SectionTitleQrcodeGenerate = () => {
                 src="/arrow.svg"
                 alt="seta ilustrativa para baixo"
                 className={styles.arrow_detail}
-                width={100}
-                height={100}
+                width={80}
+                height={80}
                 priority
             />
         </section>

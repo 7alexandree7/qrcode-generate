@@ -1,11 +1,44 @@
 'use client'
 
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { QRCodeCanvas } from "qrcode.react";
 import { FaUpload } from "react-icons/fa";
 import styles from './qrcode.module.css'
 
 const QrCode = () => {
+
+    const [link, setLink] = useState<string>("")
+    const [fgColor, setFgColor] = useState<string>("#000000")
+    const [bgColor, setBgColor] = useState<string>("#ffffff")
+    const [logoUrl, setLogoUrl] = useState<string>("https://static.zpao.com/favicon.png")
+    const [logoSize, setLogoSize] = useState<number>(38)
+    const qrCodeRef = useRef<HTMLDivElement>(null);
+
+    const handleLogoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                if (reader.result) {
+                    setLogoUrl(reader.result as string);
+                }
+            }
+            reader.readAsDataURL(file)
+        }
+    }
+
+
+    const downloadQrCode = () => {
+        if (!qrCodeRef.current) return
+        const canvas = qrCodeRef.current.querySelector('canvas');
+        if (!canvas) return;
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL("image/png");
+        link.download = 'qr_code.png';
+        link.click();
+    }
+
     return (
         <section className={styles.qr_code_container}>
             <div className={styles.qr_code}>
@@ -16,27 +49,32 @@ const QrCode = () => {
                         id="link"
                         required
                         placeholder="https://www.seusite.com.br"
+                        value={link}
+                        onChange={(e) => setLink(e.target.value)}
                     />
                 </div>
                 <div className={styles.qr_code_preview}>
                     <p>Qr Code Preview</p>
-                    <QRCodeCanvas
-                        value={"https://picturesofpeoplescanningqrcodes.tumblr.com/"}
-                        title={"Title for my QR Code"}
-                        size={200}
-                        bgColor={"#ffffff"}
-                        fgColor={"#000000"}
-                        level={"L"}
-                        imageSettings={{
-                            src: "https://static.zpao.com/favicon.png",
-                            x: undefined,
-                            y: undefined,
-                            height: 24,
-                            width: 24,
-                            opacity: 1,
-                            excavate: true,
-                        }}
-                    />
+                    <div ref={qrCodeRef}>
+                        <QRCodeCanvas
+                            value={link}
+                            title={link}
+                            size={200}
+                            bgColor={bgColor}
+                            fgColor={fgColor}
+                            level={"L"}
+                            imageSettings={{
+                                src: logoUrl,
+                                x: undefined,
+                                y: undefined,
+                                height: logoSize,
+                                width: logoSize,
+                                opacity: 1,
+                                excavate: true,
+                                crossOrigin: "anonymous"
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
 
@@ -50,13 +88,17 @@ const QrCode = () => {
                             <input
                                 type="color"
                                 id="fgColor"
+                                value={fgColor}
+                                onChange={(e) => setFgColor(e.target.value)}
                             />
                         </div>
                         <div className={styles.input_box_colors}>
                             <label className={styles.label_qr} htmlFor="bgColor">Cor Do Fundo</label>
                             <input
                                 type="color"
-                                id="bgColor"                             
+                                id="bgColor"
+                                value={bgColor}
+                                onChange={(e) => setBgColor(e.target.value)}
                             />
                         </div>
                     </div>
@@ -72,6 +114,7 @@ const QrCode = () => {
                                 id="logo"
                                 className={styles.input_file}
                                 accept="image/*"
+                                onChange={handleLogoChange}
                             />
                             <button className={styles.input_file_button}>
                                 <FaUpload />
@@ -80,7 +123,7 @@ const QrCode = () => {
                         </div>
                         <div className={styles.input_box}>
                             <label htmlFor="logoSize">Tamanho Da Logo</label>
-                            <select name="logoSize" id={styles.logoSize}>
+                            <select value={logoSize} onChange={(e) => setLogoSize(Number(e.target.value))} name="logoSize" id={styles.logoSize}>
                                 <option value="24">Pequeno 24px</option>
                                 <option value="38">Médio 38px</option>
                                 <option value="50">Grande 50px</option>
@@ -89,7 +132,7 @@ const QrCode = () => {
                     </div>
                 </div>
 
-                <button className={styles.download_button}>Baixar Qr Code</button>
+                <button onClick={downloadQrCode} className={styles.download_button}>Baixar Qr Code</button>
 
             </div>
         </section>
